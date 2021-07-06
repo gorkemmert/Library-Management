@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container">
+    <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Kitaplar</h1>
+    <hr class="mt-2 mb-5">
+    {% if books %} 
+        <form action="/search" method="post">
+
+            <input type="text" name='keyword' class=" input-sm" maxlength="64" placeholder="Ara">
+            <button type="submit" class="btn btn-danger">Kitap Ara</button>
+            <hr>
+        </form>
+        {% for book in books %}
+        <div class="row text-center text-lg-left">
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                      <img class="img-fluid img-thumbnail" src="{{book.img_url}}" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="row ">
+            <a href="/delete/{{book.id}}" class='btn btn-danger'>Kaldır</a>
+        </div>
+        <br><br>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+          Kütüphanemizde Henüz  Kitap bulunmuyor..
+        </div>
+    {% endif %}
+
+</div>
+{% endblock body %}
+
+
